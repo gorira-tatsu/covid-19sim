@@ -6,12 +6,19 @@ win = Tk()
 cv = Canvas(win, width=640, height=480)
 cv.pack()
 
-ball_ichi_x = [300, 400, 200]
-ball_ichi_y = [300, 400, 200]
+ball_ichi_x = []
+ball_ichi_y = []
 ball_idou_x = 30
 ball_idou_y = -30
 ball_size = 10
+ball_ichi_x_list = 0
+ball_ichi_y_list = 0
 
+for x in range(1, 50):
+    ball_ichi_x.append(ball_ichi_x_list)
+    ball_ichi_y.append(ball_ichi_y_list)
+    ball_ichi_x_list = ball_ichi_x_list + 100
+    ball_ichi_y_list = ball_ichi_x_list + 100
 # 画面の描画
 
 
@@ -24,7 +31,7 @@ def draw_screen():
 
 def draw_ball():
     # ボールを描
-    for i in range(3):
+    for i in range(0, 49):
         cv.create_oval(ball_ichi_x[i] - ball_size, ball_ichi_y[i] - ball_size,
                        ball_ichi_x[i] + ball_size, ball_ichi_y[i] + ball_size, fill="red")
 
@@ -34,7 +41,7 @@ def draw_ball():
 def move_ball():
     # 左右の壁に当たったかの判定
     global is_gameover, point, ball_ichi_x, ball_ichi_y, ball_idou_x, ball_idou_y
-    for j in range(3):
+    for j in range(0, 49):
         if ball_ichi_x[j] + ball_idou_x < 0 or ball_ichi_x[j] + ball_idou_x > 640:
             ball_idou_x *= -1
         # 天井に当たったかの判定
